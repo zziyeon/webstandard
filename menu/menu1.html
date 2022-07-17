@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>menu1</title>
+    <style>
+        a{
+            text-decoration: none;
+            color:inherit;
+        }
+        ul{
+            display: flex;
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            padding:10px;
+        }
+
+        ul li{
+            flex:1;
+            background-color: bisque;
+            text-align: center;
+            font-size: 30px;
+            padding:10px;
+            transition: all 0.5s;
+            outline: 1px solid black;
+        }
+        ul li:hover{
+            background-color: pink;
+            box-shadow: 3px 5px rgba(128, 128, 128, 0.5);
+            transform: scale3d(1.025,1.024,1.0);
+            z-index: 1;
+        }
+
+        ul ul{
+            display: none;
+        }
+        ul li:hover ul:hover{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <ul>
+        <li><a href="http://www.naver.com">menu1</a></li>
+        <ul> sss
+            <li>submenu1</li>
+            <li>submenu2</li>
+            <li>submenu3</li>
+        </ul>
+        <li><a href="http://www.google.com">menu2</a></li>
+        <li><a href="#">menu3</a></li>
+        <li><a href="#">menu4</a></li>
+        <li><a href="#">menu5</a></li>
+    </ul>
+    
+</body>
+</html>

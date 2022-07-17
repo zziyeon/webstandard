@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex4</title>
+    <style>
+        /* *{
+            outline: 1px solid red;
+        } */
+
+        body{
+            margin:0px;
+        }
+        
+        .wrap{
+            display: flex;
+            height: 100vh;
+            
+            justify-content: center ;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .wrap .loginBox form label{
+            display: inline-block;
+            background-color: rgb(230, 188, 134);
+            width: 80px;
+        }
+
+        button{
+            width: 100%;
+            background-color: aquamarine;
+            padding:0%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="loginBox">
+            <form action="">
+                <h2>로그인</h2>
+                <p><label for="" >아이디</label><input type="text"></p>
+                <p><label for="">비밀번호</label><input type="password"></p>
+                <p><button>로그인</button></p>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

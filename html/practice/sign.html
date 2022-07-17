@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script>
+        function view(){
+            var f=document.form;
+            if(f.type[0].checked==true){
+                document.all.cattery.style.display="";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="homeImg">
+        <button id="mainBtn"> <img src="home.jpg" alt=""></button> <h1>회원가입</h1>
+    </div>
+    
+
+
+    <input type="radio" name="type" value="고객" onclick="hide()" > 고객
+    <input type="radio" name="type" value="점주" onclick="resetAll()" checked> 점주
+
+    <div>
+        <label for="">아이디</label>
+        <input type="text" id="id">
+        <label for="">아이디는 4~5자 이내 영문, 숫자를 이용해 주세요.</label>
+        
+    </div>
+    <div>
+        <label for="">비밀번호</label>
+        <input type="password" id="pwd"> <br>
+        <label for="">비밀번호 확인</label>
+        <input type="password" id="pwd_ch">
+        <button>확인</button>
+    </div>ll
+    <div>
+        <label for="">닉네임</label>
+        <input type="text" id="nick">
+    </div>
+    <div>
+        <label for="">휴대폰</label>
+        <input type="tel" id="phone" placeholder="000-0000-0000">
+        <button>인증</button>
+    </div>
+    <div>
+        <label for="">이메일</label>
+        <input type="email" id="email" placeholder="gildong@aaa.com">
+        <button>인증</button>
+    </div>
+    <div class="imgbox" id="store_value">  
+        <label for="">가게명</label> 
+        <input type="text" id="store_name"> <br>
+        <label for="">가게 전화번호</label>
+        <input type="tel" id="store_phone" placeholder="000-0000-0000"> <br>
+        <label for="">사업자 번호</label> 
+        <input type="tel" id="store_number"placeholder="000-00-00000"> 
+    </div>
+    <p id="msg"></p>
+    <div>
+        <button id="signBtn">회원가입</button>
+    </div>
+    
+    <script>
+        function hide(){
+            document.getElementById("store_value").style.visibility="hidden" ;
+        }
+        function resetAll(){
+            document.getElementById("store_value").style.visibility="visible"
+        }
+
+        const $signBtn=document.getElementById('signBtn');
+        $signBtn.addEventListener('click',function(){
+            const $id=document.getElementById('id');
+            const $pwd=document.getElementById('pwd');
+            const $msg =document.getElementById('msg');
+            var $reg="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$"
+
+            if($id.value.trim().length==0){
+                alertMsg($msg,'아이디를 입력하세요');
+                return;
+            }
+
+            if($pwd.value.trim().length==0){
+                alertMsg($msg,'비밀번호를 입력하세요');
+                return;
+            }
+            else if($pwd.value.trim().length<8||$pwd.value.trim().length>15){
+                alertMsg($msg,'비밀번호는 최소 8-15자리입니다.');
+                return;
+            }
+            // else if(!reg.text($pwd.value)){
+            //     alertMsg($msg,'특수기호')
+            //     returns;
+            // }
+            alert('네이버로 이동합니다!');
+            document.location.href="http://www.naver.com";
+        }) 
+
+        function alertMsg(tag,msg){
+            tag.textContent=msg;
+            //경고메시지 폰트 설정
+            tag.style.color='red';
+            tag.style.fontweigt='bold';
+            tag.style.fontSize='0.8em';
+        }
+        const $mainBtn=document.getElementById('mainBtn');
+        $mainBtn.addEventListener('click',function(){
+            document.location.href="main.html";
+        })
+
+        // function pwd_ch()
+    </script>
+</body>
+</html>

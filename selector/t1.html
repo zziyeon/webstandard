@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t1</title>
+
+    <style>
+        div{outline: 1px solid red;}
+
+        .wrap>div{
+            background-color: yellow ;
+        }
+        /* 원래는 우선순위가 낮지만 !important를 사용해서 가장  높아짐
+            잘 안씀,, 다 무시하고 높아진거라,,,, */
+        .wrap>div{
+            background-color: yellow !important ;
+        }
+
+        .wrap>.box{
+            background-color: blue;
+        }
+        /* 우선순위 높은 순: ID>CLASS>TAG  */
+        .wrap>#item1{
+            background-color: pink;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="box" id="item1">box1</div>
+    </div>
+    
+</body>
+</html>

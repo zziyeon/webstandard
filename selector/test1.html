@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            outline: 1px solid red;
+        }
+        .wrap>.box{
+            width: 100px;
+            height: 100px;
+        }
+        /* case1 */
+        .box1{
+            background-color: yellow;
+        }
+        /* case2 */
+        div.box1{
+            background-color: blue;
+        }
+        /* case3 */
+        html>body>div>.box1{
+            background-color: pink;
+        }
+        /* case4 - css 적용 우선순위: 디테일한게 우선순위가 높다.(case3이 우선순위가 더 높아서 적용 안됨*/
+        body>div>.box1{
+            background-color: yellowgreen;
+        }
+            
+        .box.box3{
+            background-color: yellow;
+        }
+
+        .box.box3.box4{
+                    background-color: green;
+                }
+        
+    </style>
+</head>
+<body>
+        <div class="wrap">
+            <div class="box box1">box1</div>
+            <div class="box box2">box2</div>
+            <div class="box box3">box3</div>
+            <div class="box box3 box4">box4</div>
+        </div>
+</body>
+</html>
