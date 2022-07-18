@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main figure img{
+            width: 300px;
+            height: 300px;
+            float: left;                /* float 사용할때 조심하기 
+            흐름을 끊어줘야한다. ex) 아래 clear: both*/
+        }
+
+        main figure::after{
+            content: ' ';
+            display: block;
+            clear: both;
+
+        }
+    </style>
+<body>
+    <main>
+        <figure><img src="/img/사진.jpg" alt="이미지">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis iste reprehenderit error provident asperiores ad nulla ullam accusamus, nesciunt voluptates beatae suscipit expedita iure odio, temporibus obcaecati nihil, dolorum a Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia earum vero, iure quaerat dolores quas commodi ea dicta nihil animi odio molestias voluptatibus recusandae accusamus, possimus fugit rem saepe nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. At tempore molestias maiores magnam eos! Consequatur harum a itaque! Consequatur provident odio reiciendis, animi sed assumenda deserunt quod commodi magni eos?
+    </figure>
+
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates labore consequatur impedit doloribus pariatur soluta officia, iure magnam minima, rerum molestiae numquam eaque nulla. Repellendus excepturi aperiam molestiae sapiente recusandae?</p>
+    </main>
+    
+</body>
+</html>
