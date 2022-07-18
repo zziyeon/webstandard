@@ -21,10 +21,16 @@
             position: sticky;
             top:0;
             z-index: 1000;
+            margin: 0px 270px;
         }
         header .logo{
             flex: 1;
         }
+        header .logo img{
+            width: 70px;
+            height: 50px;
+        }
+
         header .menu{
             flex: 3;
             display: flex;
@@ -42,6 +48,7 @@
         }
         header .menu .gnb > ul{
             display: flex;
+            height: 100%;
         }
         header .menu .gnb >ul> li{
             flex:1;
@@ -55,8 +62,10 @@
             cursor: pointer;
             color:aqua;
         }
-
+        
         header .menu .gnb>ul> li:hover >ul{
+            background-color: white;
+            color:black;
             display: block;
         }
 
@@ -68,11 +77,14 @@
             left: 0;
             width: 100%;
         }
+        header .menu .gnb>ul>li>ul>li{
+            background-color: white;
+        }
 
-        /* header img{
-            width: 50px;
-            height: 30px;
-        } */
+        header .menu .gnb>ul>li>ul>li:hover{
+            background-color: white;
+        }
+
 
 
         /* figure */
@@ -129,41 +141,41 @@
             font-size: 11px;
         }
     </style>
+    <script src="https://kit.fontawesome.com/132ba309f6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <div class="logo"> logo
-
-            <!-- <img src="/img/lo.png" alt="홈페이지로고"> -->
+        <div class="logo"> 
+            <img src="/img/lo.png" alt="홈페이지로고">
         </div>
         <div class="menu">
             <div class="topmenu">
                 <span>회원가입</span>
-                <span>로그인</span>
-                <span>고객센터</span>
+                <span><i class="fa-regular fa-circle-user fa-lg" title="로그인"></i></span>
+                <span><i class="fa-regular fa-headset fa-lg"></i></span>
             </div>
             <div class="gnb">
                 <ul>
                     <li>menu1
                         <ul>
-                            <li>munu1</li>
+                            <li><a href="http://www.naver.com" target="_blank">네이버</a></li>
                             <li>munu2</li>
                             <li>munu3</li>
                         </ul>
                     </li>
-                    <li>menu2
+                    <li>업종별 카테고리
                         <ul>
-                            <li>munu1</li>
-                            <li>munu2</li>
-                            <li>munu3</li>
+                            <li>한식</li>
+                            <li>중식</li>
+                            <li>일식</li>
                         </ul>
                     </li>
-                    <li>menu3
+                    <li>지역별 카테고리
                         <ul>
-                            <li>munu1</li>
-                            <li>munu2</li>
-                            <li>munu3</li>
+                            <li>서울</li>
+                            <li>울산</li>
+                            <li>제주</li>
                         </ul>
                     </li>
                 </ul>
