@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+* {outline: 1px solid red;}
+
+#wrapper {
+    width:  1800px;
+}
+
+/* header 영역 */
+header {display: flex; height:100px;}
+header .logo {
+    flex:1;
+}
+header .menu {
+    flex: 3;
+}
+header .menu .menu-top{
+    height: 40px;
+}
+header .menu .gnb{
+    height: 60px;
+}
+
+/* mian 영역 */
+#container {display: flex; padding: 0px 200px;}
+#container #sectionLeft {flex: 2;}
+#container #sectionRight {flex: 1;}
+
+/* footer 영역 */
+footer {height: 100px;}
