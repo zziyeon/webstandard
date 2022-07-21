@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상단바 | 모바일 만들기</title>
+    <style>
+        * {
+            /* outline: 1px solid red; */
+            margin: 0; padding: 0;}
+        ul,li {list-style: none;}
+        a { text-decoration: none; color:inherit}
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+            background-color: #e3d6f7;
+            position: relative;
+        }
+        .navbar__logo, .navbar__menu, .navbar__sns {
+            display: flex;
+            /* flex-wrap: wrap; */
+        }
+
+        /* logo */
+        .navbar .navbar__logo li:nth-child(1){
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 5px;
+            font-size: 1.5em;
+            color:#4A4453;
+        }
+        .navbar .navbar__logo li:nth-child(2){
+            font-size: 1.5rem;
+            color:#42325c;
+        }
+
+        /* gnb */
+        .navbar .navbar__menu li {
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        .navbar .navbar__menu li:hover {
+            background-color: #FCF8FF;
+            transition: background-color 0.5s ease;
+        }
+        
+        /* sns */
+        .navbar .navbar__sns li {
+            margin-left: 5px;
+            font-size: 30px;
+        }
+        .navbar .navbar__sns li:nth-child(1) {
+            color: rgb(16, 103, 233);
+        }
+        .navbar .navbar__sns li:nth-child(2) {
+            color: rgb(102, 163, 255);
+        }
+        .navbar .navbar__sns li:nth-child(3) {
+            color: rgb(230, 15, 250);
+        }
+
+
+        /* hamburger btn */
+        #hamburger {
+            display: none;
+            /* position: relative;
+            left:100px;
+            bottom: 100px; */
+            position: absolute;         /* 부모 요소 */
+            top: 7px;
+            right: 20px;
+            font-size: 1.5em;
+        }
+
+        /* 움직이게 media */
+        @media screen and (max-width: 767px) {
+            .navbar, .navbar__menu{
+                flex-direction: column;
+            }
+            #hamburger {
+                display: block;
+            }
+            .navbar__logo {
+                align-self: flex-start;
+            }
+            /* .navbar__menu,
+            .navbar__sns{
+                display: none;
+            } */
+
+            .navbar .navbar__menu {
+                width: 100%;
+                text-align: center;
+                border-top: 0.5px solid rgb(65, 30, 30);
+                border-bottom: 0.5px solid rgb(65, 30, 30);
+            }
+
+            .navbar .navbar__menu.active,
+            .navbar .navbar__sns.active {
+                display: none;
+            }
+        }
+
+
+
+    </style>
+    <script src="https://kit.fontawesome.com/132ba309f6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="navbar__logo">
+            <li><a href="#"><i class="fa-solid fa-skull-crossbones"></i></a></li>
+            <li><a href="#">울산KH정보교육원</a></li>
+        </ul>
+        <ul class="navbar__menu">
+            <li><a href="#">menu1</a></li>
+            <li><a href="#">menu2</a></li>
+            <li><a href="#">menu3</a></li>
+            <li><a href="#">menu4</a></li>
+            <li><a href="#">menu5</a></li>
+        </ul>
+        <ul class="navbar__sns">
+            <li><a href="#"><i class="fa-brands fa-facebook-square" id="instagram"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-twitter-square"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+        </ul>
+        <a href="#" id="hamburger"><i class="fa-solid fa-bars"></i></a>
+    </div>
+
+    <script>
+        const $hamburger = document.getElementById('hamburger');
+        $hamburger.addEventListener('click', handleHamburger);
+
+        function handleHamburger(){
+            console.log('햄버거 버튼 클릭됨!');
+            const $logo = document.querySelector('.navbar .navbar__logo');
+            const $menu = document.querySelector('.navbar .navbar__menu');
+            const $sns = document.querySelector('.navbar .navbar__sns');
+
+            $logo.classList.toggle('active');
+            $menu.classList.toggle('active');
+            $sns.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
