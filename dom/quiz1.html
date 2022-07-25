@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈1</title>
+    <style>
+        .active {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h3>2개의 양의 정수값(3자리)을 랜덤하게 발생시키고 사용자가 더하기 연산한 결과 맞는지 체크하는 웹어플리케이션을 구현하시오.</h3>
+    <h4>맞으면 답 입력 필드의 배경색을 초록색으로</h4>
+    <input type="text" id="one" value="">+
+    <input type="text" id="two">=
+    <input type="text" id="result">
+
+    <button id="check" style="background-color: yellow;">결과 확인</button>
+    <button id="again"  style="background-color: yellow;">다시 풀기</button> 
+    <!-- 두값의 value 속성값을 다시 랜덤으로 넣어주고 답의 결과 없애기 -->
+</body>
+<script>
+    // 랜덤 정수 두개
+    const random1=Math.floor(Math.random()*1000);
+    const random2=Math.floor(Math.random()*1000);
+
+    console.log(random1);
+    console.log(random2);
+
+    const $one=document.getElementById('one');
+    const $two=document.getElementById('two');
+    const $result=document.getElementById('result');
+
+    $one.value=random1;
+    $two.value=random2;
+
+    // 버튼 두개
+    const $check=document.getElementById('check');
+    const $again=document.getElementById('again');
+
+    $check.addEventListener('click',addHandler);
+    $again.addEventListener('click',resetHandler);
+
+    function addHandler(e){
+        console.log('결과확인 클릭됨');
+        let $result1=parseInt($one.value)+parseInt($two.value);
+        console.log($result1);
+
+        if($result1==$result.value){
+            console.log('결과가 맞습니다.');
+            $result.style.backgroundColor="green";
+        }
+        else {
+            console.log('틀렷습니다.');
+            $result.style.backgroundColor="red";
+        }
+    }
+    function resetHandler(e){
+        console.log('다시 풀기 클릭됨');
+        
+        $result.style.backgroundColor="white";
+        $result.value='';
+    }
+
+</script>
+</html>

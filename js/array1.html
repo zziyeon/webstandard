@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열1</title>
+</head>
+<body>
+    <script>
+        const arr=[];   //빈 배열 생성
+        arr.push(1);        //요소 맨 뒤 추가
+        arr.push(2,3);        
+        console.log(arr);
+        arr.unshift(-8);        //요소를 맨 앞에 추가
+        console.log(arr);
+        arr.splice(2,0,8);      //원하는 위치에 요소 추가  splice(인덱스 위치, 인데스 위치부터 삭제할 요소 개수, 추가 값)
+        console.log(arr);       
+        arr.pop();          // 요소 맨 뒤 제거
+        console.log(arr);       
+        arr.shift();        //요소 맨 앞 제거
+        console.log(arr);
+        arr.splice(1,2);        //원하는 위치 요소 제거
+        console.log(arr);
+
+        arr[0]=10;                 //위치 값 수정
+        console.log(arr);
+        arr.splice(0,1,1,2,3,4,5);
+        //복사
+        const arr2=[...arr];
+        console.log(arr2);
+
+        //모든 요소에 순차 접근
+        // 일반 for문
+        for(let i=0;i<arr2.length;i++) {
+            console.log(arr2[i]*2);
+        }
+
+        //for~of
+        for(let ele of arr2){
+            console.log(ele*2);
+        }
+
+        //고차함수
+        console.log('--고차함수--');
+        // arr2.forEach(function(ele,idx,arr){ 
+        //     console.log(ele,idx,arr);
+        // });
+        arr2.forEach(ele=>{
+            console.log(ele*2);
+        })
+
+        </script>
+</body>
+</html>
