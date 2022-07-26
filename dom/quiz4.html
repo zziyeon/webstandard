@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 4</title>
+</head>
+
+<body>
+    <h3>4칙연산을 사용자가 선택할 수 있다. (select사용)</h3>
+    <h4>맞으면 답 입력 필드의 배경색을 초록색으로</h4>
+
+    <select name="연산" id="type_choose">
+        <option id="default" value="def" selected disabled>==연산 선택==</option>
+        <option id="type_plus" value="+">덧셈</option>
+        <option id="type_minus" value="-">뺄셈</option>
+        <option id="type_multi" value="*">곱셈</option>
+        <option id="type_division" value="/">나눗셈</option>
+    </select>
+
+    <input type="text" id="one">
+    <span id="calculation">+</span>
+    <input type="text" id="two">=
+    <input type="text" id="result">
+
+    <button id="check" style="background-color: yellow;">결과 확인</button>
+    <button id="again" style="background-color: yellow;">다시 풀기</button>
+
+</body>
+<script>
+
+    //select 버튼
+    const $type_choose = document.getElementById('type_choose');
+    console.log($type_choose);
+    $type_choose.addEventListener('change', selectType);
+
+    const $one = document.getElementById('one');
+    const $calculation = document.getElementById('calculation');
+    const $two = document.getElementById('two');
+    const $result = document.getElementById('result');
+
+    function selectType(e) {
+        console.log(e.target.value);
+        $calculation.innerText = e.target.value;
+        $result.value = '';
+        $result.style.backgroundColor = "white";
+    }
+
+    // 랜덤 정수 두개
+    const random1 = Math.floor(Math.random() * 1000) + 1;
+    const random2 = Math.floor(Math.random() * 1000) + 1;
+    console.log(random1);
+    console.log(random2);
+
+    if (random1 >= random2) {
+        $one.value = random1;
+        $two.value = random2;
+    }
+    else {
+        $one.value = random2;
+        $two.value = random1;
+    }
+
+    //버튼
+    const $check = document.getElementById('check');
+    const $again = document.getElementById('again');
+    $check.addEventListener('click', checkHandler);
+    $again.addEventListener('click', resetHandler);
+
+    let $result_plus = parseInt($one.value) + parseInt($two.value);
+    let $result_minus = parseInt($one.value) - parseInt($two.value);
+    let $result_multi = parseInt($one.value) * parseInt($two.value);
+    let $result_division = Math.round((parseInt($one.value) / parseInt($two.value)) * 100) / 100;
+
+    function result_value() {
+        if ($result.value == '') {
+            console.log('결과 값이 없습니다.');
+        }
+        else if ($result_plus == $result.value || $result_minus == $result.value || $result_multi == $result.value || $result_division == $result.value) {
+            console.log('결과가 맞습니다.');
+            $result.style.backgroundColor = "green";
+        }
+        else {
+            console.log('틀렷습니다.');
+            $result.style.backgroundColor = "red";
+        }
+    }
+
+    function checkHandler(e) {
+        console.log('결과확인 클릭됨');
+        if ($calculation.innerText == '+') {
+            console.log($result_plus);
+            result_value();
+        }
+        else if ($calculation.innerText == '-') {
+            console.log($result_minus);
+            result_value();
+        }
+        else if ($calculation.innerText == '*') {
+            console.log($result_multi);
+            result_value();
+        }
+        else if ($calculation.innerText == '/') {
+            console.log($result_division);
+            result_value();
+        }
+    }
+
+    function resetHandler(e) {
+        console.log('다시 풀기 클릭됨');
+        const random1 = Math.floor(Math.random() * 1000) + 1;
+        const random2 = Math.floor(Math.random() * 1000) + 1;
+        if (random1 >= random2) {
+            $one.value = random1;
+            $two.value = random2;
+        }
+        else {
+            $one.value = random2;
+            $two.value = random1;
+        }
+        $result.style.backgroundColor = "white";
+        $result.value = '';
+    }
+</script>
+
+</html>

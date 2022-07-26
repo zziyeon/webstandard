@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +7,6 @@
     <title>퀴즈1</title>
 
 </head>
-
 <body>
     <h3>양의 정수 3자리를 덧셈 연산하는 웹어플리케이션을 구현하시오.</h3>
     <h4>맞으면 답 입력 필드의 배경색을 초록색으로</h4>
@@ -17,20 +15,20 @@
     <input type="text" id="result">
 
     <button id="check" style="background-color: yellow;">결과 확인</button>
-    <button id="again" style="background-color: yellow;">다시 풀기</button>
+    <button id="again"  style="background-color: yellow;">다시 풀기</button> 
     <!-- 두값의 value 속성값을 다시 랜덤으로 넣어주고 답의 결과 없애기 -->
 </body>
 <script>
     // 랜덤 정수 두개
-    const random1 = Math.floor(Math.random() * 1000) + 1;
-    const random2 = Math.floor(Math.random() * 1000) + 1;
+    const random1=Math.floor(Math.random()*1000)+1;
+    const random2=Math.floor(Math.random()*1000)+1;
 
     console.log(random1);
     console.log(random2);
 
-    const $one = document.getElementById('one');
-    const $two = document.getElementById('two');
-    const $result = document.getElementById('result');
+    const $one=document.getElementById('one');
+    const $two=document.getElementById('two');
+    const $result=document.getElementById('result');
 
     if (random1 >= random2) {
         $one.value = random1;
@@ -42,30 +40,33 @@
     }
 
     // 버튼 두개
-    const $check = document.getElementById('check');
-    const $again = document.getElementById('again');
+    const $check=document.getElementById('check');
+    const $again=document.getElementById('again');
 
-    $check.addEventListener('click', addHandler);
-    $again.addEventListener('click', resetHandler);
+    $check.addEventListener('click',addHandler);
+    $again.addEventListener('click',resetHandler);
 
-    function addHandler(e) {
+    function addHandler(e){
         console.log('결과확인 클릭됨');
-        let $result1 = parseInt($one.value) + parseInt($two.value);
+        let $result1=parseInt($one.value)+parseInt($two.value);
         console.log($result1);
 
-        if ($result1 == $result.value) {
+        if ($result.value==''){
+            console.log('결과 값이 없습니다.');
+        }
+        else if($result1==$result.value){
             console.log('결과가 맞습니다.');
-            $result.style.backgroundColor = "green";
+            $result.style.backgroundColor="green";
         }
         else {
             console.log('틀렷습니다.');
-            $result.style.backgroundColor = "red";
+            $result.style.backgroundColor="red";
         }
     }
-    function resetHandler(e) {
+    function resetHandler(e){
         console.log('다시 풀기 클릭됨');
-        const random1 = Math.floor(Math.random() * 1000) + 1;
-        const random2 = Math.floor(Math.random() * 1000) + 1;
+        const random1=Math.floor(Math.random()*1000)+1;
+        const random2=Math.floor(Math.random()*1000)+1;
         if (random1 >= random2) {
         $one.value = random1;
         $two.value = random2;
@@ -74,10 +75,9 @@
             $one.value = random2;
             $two.value = random1;
         }
-        $result.style.backgroundColor = "white";
-        $result.value = '';
+        $result.style.backgroundColor="white";
+        $result.value='';
     }
 
 </script>
-
 </html>

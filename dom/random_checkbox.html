@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#+#-#</title>
+</head>
+<body>
+    <fieldset>
+        <legend>연산 선택 2가지</legend>
+        <input type="checkbox" name="" value="+" id="type_plus"><label for="type_plus">덧셈</label>
+        <input type="checkbox" name="" value="-" id="type_minus"><label for="type_minus">뺄셈</label>
+        <input type="checkbox" name="" value="*" id="type_multi"><label for="type_multi">곱셈</label>
+        <input type="checkbox" name="" value="/" id="type_division"><label for="type_division">나눗셈</label>
+    </fieldset>
+
+    <input type="text" id="one">
+    <span id="calculation1">+</span>
+    <input type="text" id="two">
+    <span id="calculation2">+</span>
+    <input type="text" id="three">=
+    <input type="text" id="result">
+
+    <button id="check" style="background-color: yellow;">결과 확인</button>
+    <button id="again" style="background-color: yellow;">다시 풀기</button>
+</body>
+
+<script>
+    //체크박스
+    const $type=document.querySelectorAll('input[type=checkbox]');
+
+    const maxCount=2;       //체크박스 선택 최대값 2
+    const count=0;
+
+    function CountChecked(e){
+        if(e.checked){
+            count +=1;
+        }
+        else{
+            count -=1;
+        }
+    }
+    
+    // $type.forEach(e=>{
+    //     console.log(e.target.value);
+
+    // })
+
+    //빈칸
+    const $one = document.getElementById('one');
+    const $calculation1 = document.getElementById('calculation1');
+    const $two = document.getElementById('two');
+    const $calculation2 = document.getElementById('calculation2');
+    const $three = document.getElementById('three');
+    const $result = document.getElementById('result');
+
+    // 랜덤 정수 세 개
+    const random1 = Math.floor(Math.random() * 100) + 1;
+    const random2 = Math.floor(Math.random() * 100) + 1;
+    const random3 = Math.floor(Math.random() * 100) + 1;
+    console.log(random1);
+    console.log(random2);    
+    console.log(random3);    
+
+    $one.value=random1;
+    $two.value=random2;
+    $three.value=random3;
+
+</script>
+</html>

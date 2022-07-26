@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 3</title>
+</head>
+
+<body>
+    <h3>양의 정수 3자리를 4칙연산을 사용자가 선택할 수 있다.(radio 사용)</h3>
+    <span>
+        결과 확인 버튼 클릭하면 맞으면 답 입력 필드의 배경색을 초록색으로
+        틀리면 빨간색으로 표시
+        다시 풀기 버튼 클릭하면 문제를 다시 출제하고 답안을 초기화 한다.
+        답안이 작성되지 않은 상태에는 결과 확인 할 수 없다.
+    </span>
+
+    <fieldset>
+        <legend>연산 선택
+            <input type="radio" name="type" id="type_plus" value="+" checked> <label for="type_plus">덧셈</label>
+            <input type="radio" name="type" id="type_minus" value="-"> <label for="type_minus">뺄셈</label>
+            <input type="radio" name="type" id="type_multi" value="*"> <label for="type_multi">곱셈</label>
+            <input type="radio" name="type" id="type_division" value="/"> <label for="type_division">나눗셈</label>
+        </legend>
+    </fieldset>
+
+
+    <input type="text" id="one">
+    <span id="calculation">+</span>
+    <input type="text" id="two">=
+    <input type="text" id="result">
+
+    <button id="check" style="background-color: yellow;">결과 확인</button>
+    <button id="again" style="background-color: yellow;">다시 풀기</button>
+
+</body>
+<script>
+    //라디오 버튼
+    const $plus = document.getElementById('type_plus');
+    const $minus = document.getElementById('type_minus');
+    const $multi = document.getElementById('type_multi');
+    const $division = document.getElementById('type_division');
+
+    $plus.addEventListener('click', addHandler);
+    $minus.addEventListener('click', minusHandler);
+    $multi.addEventListener('click', multiHandler);
+    $division.addEventListener('click', divisionHandler);
+
+    // const $types=document.querySelectorAll('input[type=radio]');
+    // $types.forEach(e=>e.addEventListener('click',))
+
+    const $one = document.getElementById('one');
+    const $calculation = document.getElementById('calculation');
+    const $two = document.getElementById('two');
+    const $result = document.getElementById('result');
+
+    // 랜덤 정수 두개
+    const random1 = Math.floor(Math.random() * 1000) + 1;
+    const random2 = Math.floor(Math.random() * 1000) + 1;
+    console.log(random1);
+    console.log(random2);
+
+    if (random1 >= random2) {
+        $one.value = random1;
+        $two.value = random2;
+    }
+    else {
+        $one.value = random2;
+        $two.value = random1;
+    }
+
+    // 덧셈
+    function addHandler(e) {
+        $calculation.innerText = "+";
+        $result.value = '';
+        $result.style.backgroundColor = "white";
+    }
+    //뺄셈
+    function minusHandler(e) {
+        $calculation.innerText = "-";
+        $result.value = '';
+        $result.style.backgroundColor = "white";
+    }
+    //곱셈
+    function multiHandler(e) {
+        $calculation.innerText = "*";
+        $result.value = '';
+        $result.style.backgroundColor = "white";
+    }
+    //나눗셈
+    function divisionHandler(e) {
+        $calculation.innerText = "/";
+        $result.value = '';
+        $result.style.backgroundColor = "white";
+    }
+
+    //버튼
+    const $check = document.getElementById('check');
+    const $again = document.getElementById('again');
+    $check.addEventListener('click', checkHandler);
+    $again.addEventListener('click', resetHandler);
+
+    let $result_plus = parseInt($one.value) + parseInt($two.value);
+    let $result_minus = parseInt($one.value) - parseInt($two.value);
+    let $result_multi = parseInt($one.value) * parseInt($two.value);
+    let $result_division = Math.round((parseInt($one.value) / parseInt($two.value)) * 100) / 100;
+
+    function result_value() {
+        if ($result.value == '') {
+            console.log('결과 값이 없습니다.');
+        }
+        else if ($result_plus == $result.value || $result_minus == $result.value || $result_multi == $result.value || $result_division == $result.value) {
+            console.log('결과가 맞습니다.');
+            $result.style.backgroundColor = "green";
+        }
+        else {
+            console.log('틀렷습니다.');
+            $result.style.backgroundColor = "red";
+        }
+    }
+
+    function checkHandler(e) {
+        console.log('결과확인 클릭됨');
+        if ($calculation.innerText == '+') {
+            console.log($result_plus);
+            result_value();
+        }
+        else if ($calculation.innerText == '-') {
+            console.log($result_minus);
+            result_value();
+        }
+        else if ($calculation.innerText == '*') {
+            console.log($result_multi);
+            result_value();
+        }
+        else if ($calculation.innerText == '/') {
+            console.log($result_division);
+            result_value();
+        }
+    }
+
+
+    function resetHandler(e) {
+        const random1 = Math.floor(Math.random() * 1000) + 1;
+        const random2 = Math.floor(Math.random() * 1000) + 1;
+        if (random1 >= random2) {
+            $one.value = random1;
+            $two.value = random2;
+        }
+        else {
+            $one.value = random2;
+            $two.value = random1;
+        }
+        $result.style.backgroundColor = "white";
+        $result.value = '';
+    }
+</script>
+
+</html>
