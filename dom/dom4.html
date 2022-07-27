@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/dom/create_elememt.js"></script>
+</head>
+<body>
+    <div id="container">
+        <!-- 이걸 넣고 싶음 -->
+        <!-- <ul>
+            <li>menu1</li>
+            <li>menu2</li>
+            <li>menu3</li>
+        </ul> -->
+    </div>
+    <button>클릭</button>
+</body>
+<script>
+    const $btn=document.querySelector('button');
+    // const addBtn_h=function(e){
+    //     console.log('버튼 클릭됨!');
+    //     const $ul=makeElements('ul');
+    //     console.log($ul);
+    //     document.getElementById('container').appendChild($ul);
+
+    //     const $li_1=makeElements('li',{},'menu1');
+    //     const $li_2=makeElements('li',{},'menu2');
+    //     const $li_3=makeElements('li',{},'menu3');
+
+    //     document.getElementById('container').appendChild($ul).appendChild($li_1);
+    //     document.getElementById('container').appendChild($ul).appendChild($li_2);
+    //     document.getElementById('container').appendChild($ul).appendChild($li_3);
+    // }
+
+    const addBtn_h=function(e){
+        const $ul=makeElements('ul',null,
+        makeElements('li',null,'menu1'),
+        makeElements('li',null,'menu2'),
+        makeElements('li',null,'menu3')
+        );
+
+        document.getElementById('container').appendChild($ul);
+    }
+
+    $btn.addEventListener('click',addBtn_h);
+
+</script>
+</html>

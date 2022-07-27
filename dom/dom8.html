@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/dom/create_elememt.js"></script>
+    <style>
+        * {
+            outline: 1px solid red;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        #container .wrap {
+            display: flex;
+            align-items: stretch;
+        }
+
+        #container .wrap .title {
+            align-self: center;
+        }
+
+        /* #container .comment__list {} */
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="wrap">
+            <label for="" class="title">댓글작성 </label>
+            <textarea class="comment" name="" id="" cols="30" rows="3"></textarea>
+            <button class="btn btn__write">등록</button>
+            <button class="btn btn__remove">삭제</button>
+
+        </div>
+        <div class="comment__list">
+            <ul class="comments">
+                <li class="comment__item">댓글1</li>
+                <li class="comment__item">댓글2</li>
+                <li class="comment__item">댓글3</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const $text = document.querySelector('textarea');
+        const $fragment = document.createDocumentFragment();
+        const add_h = e => {
+            $fragment.appendChild(makeElements('li', { class: 'comment__item' }, $text.value));
+            document.querySelector('ul').appendChild($fragment);
+        }
+        const remove_h = e => {
+            console.log('클릭됨');
+            const choose=document.querySelectorAll('li')
+            for (let i = 0; i < 100; i++) {
+                if ($text.value == choose[i].innerText) {
+                    document.querySelector('ul').removeChild(choose[i]);
+                    break;
+                }
+            }
+        }
+        document.querySelector('.wrap .btn__write').addEventListener('click', add_h);
+        document.querySelector('.btn__remove').addEventListener('click', remove_h);
+
+    </script>
+</body>
+
+</html>

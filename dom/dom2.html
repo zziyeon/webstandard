@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a:active {
+            color: inherit; /* 클릭했을 때: 기본 빨강 */
+        }
+        a:visited {     /* 방문한 이력이 있을 때: 기본 보라 */
+            color: blue;
+        }
+        a:link {        /* 방문 전 상태: 기본 값은 파랑 */
+            color: teal;
+        }
+        a:hover {       /* 마우스를 위에 올렸을 때 */
+            cursor: pointer;
+        }
+        a:active, a:visited, a:link, a:hover {
+            /* color: inherit; */
+            cursor: pointer;
+        }
+
+        .btn {
+            background-color: rebeccapurple;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">버튼 추가</a>
+    <a href="https://www.naver.com">네이버</a>
+    <div id="container">
+        <!-- <button class="btn">클릭</button> -->
+    </div>
+
+    <script>
+        const $aTAg=document.querySelector('a');
+        const addBtn_h=function(e){
+            e.preventDefault();     // 이벤트 객체의 기존의 이벤트 특성 지움
+            console.log('클릭됨'+e.target);
+
+            //1) Element 생성
+            const $button=document.createElement('button');     //속성X, 컨텐츠X
+
+            //2) textNode 생성
+            const $TextNode=document.createTextNode('클릭');
+
+            //3) Element의 자식으로 textNode를 추가
+            $button.appendChild($TextNode);
+            console.log($button);
+
+            //4) #container의 자식으로 $button 추가 (만들어진 element를 원하는 곳에 추가)
+            const $space =document.getElementById('container');
+            $space.appendChild($button);
+
+            //5) $button에 속성 추가
+            $button.classList.add('btn');
+
+            //6) $button에 click 이벤트 등록
+            $button.addEventListener('click', function(){
+                console.log('생성된 버튼 클릭됨');
+            })
+
+        }
+        $aTAg.addEventListener('click',addBtn_h);
+
+
+    </script>
+</body>
+</html>

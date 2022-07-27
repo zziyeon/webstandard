@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="/dom/create_elememt.js"></script>
+</head>
+<body>
+    <div id="container">
+        <ul>dd
+            <!-- 이걸 넣고 싶음 -->
+            <!-- <div id="content">
+                <li>menu1</li>
+                <li>menu2</li>
+                <li>menu3</li>
+            </div> -->
+        </ul>
+    </div>
+    <button>클릭</button>
+</body>
+<script>
+    const $btn=document.querySelector('button');
+
+    // const addBtn_h=function(e){
+    //     console.log('버튼 클릭됨!');
+        
+    //     const $div=makeElements('div',null,
+    //     makeElements('li',null,'menu1'),
+    //     makeElements('li',null,'menu2'),
+    //     makeElements('li',null,'menu3')
+    //     );
+    //     console.log($div);
+
+    //     document.querySelector('#container ul').appendChild($div);
+    // }
+
+    $btn.addEventListener('click',addBtn_h);
+
+</script>
+</html>
