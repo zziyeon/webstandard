@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습</title>
+    <style>
+        * {
+            outline: 1px solid rebeccapurple;
+        }
+        .menu {
+            outline: 5px solid skyblue;
+        }
+        .active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- li menu 클릭시 클릭한 배경색 변화 보이기 -->
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item" data-selected-menu="m1">menu1</li>
+            <li class="menu__item" data-selected-menu="m2">menu2</li>
+            <li class="menu__item" data-selected-menu="m3">menu3</li>
+        </ul>
+        <div id="msg">메뉴를 선택했습니다.</div>
+    </div>
+
+    <script>
+        const menuItemClick_h=e=>{
+            console.dir(e.target.tagName);
+            //LI인 부분만 실행 하겠다.!
+            if(e.target.tagName !='LI')return;
+
+            const $menuItems=document.querySelectorAll('#container .menu .menu__item');
+            //console.log($menuItems);
+
+            for(let $menuItem of $menuItems) {
+                //case 1) add, remove 사용
+                // if($menuItem==e.target){
+                //     $menuItem.classList.add('active');
+                // }else{
+                //     $menuItem.classList.remove('active');
+                // }
+
+                //case 2) toggle 사용
+                // $menuItem.classList.toggle('active',$menuItem==e.target);
+
+                //case 3) for...each 사용
+                $menuItems.forEach($menuItem=>{
+                    $menuItem.classList.toggle('active',$menuItem==e.target);
+                });
+            }
+        }
+        document.querySelector('.menu').addEventListener('click', menuItemClick_h);
+
+    </script>
+</body>
+
+</html>

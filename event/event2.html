@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캡처링, 버블링</title>
+    <style>
+        * {
+            outline: 1px solid rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item">menu1</li>
+            <li class="menu__item">menu2</li>
+            <li class="menu__item">menu3</li>
+            <li class="menu__item">menu4</li>
+            <li class="menu__item">menu5</li>
+        </ul>
+        <div id="msg">메뉴를 선택했습니다.</div>
+    </div>
+    
+    <script>
+        // const $menu__item=document.querySelectorAll('li');
+        const $menu=document.querySelector('#container');
+        
+        const choose_menu_h=e=>{
+            document.getElementById('msg').textContent=e.target.textContent+'메뉴를 선택했습니다.';
+        }
+        // $menu__item.forEach(e=>e.addEventListener('click',choose_menu_h));
+        $menu.addEventListener('click',choose_menu_h);
+
+    </script>
+</body>
+</html>

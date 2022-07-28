@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트5</title>
+    <style>
+        ul,li {
+            margin: 0; padding: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <fieldset>
+            <legend>취미</legend>
+            <div class="select--all">
+                <input type="checkbox" name="" id="" ><span>전체선택</span>
+            </div>
+            <ul class="hobby">
+                <li class="hobby_item">
+                    <input type="checkbox" name="" id=""><span>취미1</span>
+                </li>
+                <li class="hobby_item">
+                    <input type="checkbox" name="" id=""><span>취미2</span>
+                </li>
+                <li class="hobby_item">
+                    <input type="checkbox" name="" id=""><span>취미3</span>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <script>
+        const $all =document.querySelector('.select--all');
+        
+
+        // const $hobbyItems=document.querySelectorAll('.hobby_item');
+
+        const all_h=e=>{
+            console.log('클릭됨');
+            for(let i=0;i<100;i++){
+                if(e.target.checked){
+                document.querySelectorAll('input')[1].setAttribute('checked');
+                document.querySelectorAll('input')[2].removeAttribute('checked');
+                document.querySelectorAll('input')[3].removeAttribute('checked');
+                }else{               
+                document.querySelectorAll('input')[1].setAttribute('checked',true);
+                document.querySelectorAll('input')[2].setAttribute('checked',true);
+                document.querySelectorAll('input')[3].setAttribute('checked',true);
+            }}
+        }
+        $all.addEventListener('click', all_h);
+        
+
+    </script>
+    
+</body>
+</html>

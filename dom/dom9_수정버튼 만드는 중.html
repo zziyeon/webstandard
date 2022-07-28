@@ -1,56 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* * {outline:1px solid red;} */
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * {outline:1px solid red;} */
 
-        ul {
-            margin: 0;
-            padding: 0
-        }
+    ul { margin:0;padding:0}
+    ul,li {list-style: none;}
 
-        ul,
-        li {
-            list-style: none;
-        }
+    #container .wrap {
+      display:flex;
+      align-items: stretch;
+    }
+    #container .wrap .title {
+      align-self: center;
+      width:80px;
+    }
+    #container .wrap .comment {
+      /* flex:1; */
+    }
+    #container .wrap .btn {
+      width:60px;
+      margin-left: 5px;
+    }
 
-        #container .wrap {
-            display: flex;
-            align-items: stretch;
-        }
-
-        #container .wrap .title {
-            align-self: center;
-            width: 80px;
-        }
-
-        #container .wrap .comment {
-            flex: 1;
-        }
-
-        #container .wrap .btn {
-            width: 60px;
-            margin-left: 5px;
-        }
-
-        #container .comment__list .comment__item-wrap {
-            display: flex;
-        }
-
-        #container .comment__list .comment__item-wrap .comment__item {
-            flex: 1;
-        }
-
-        #container .comment__list .comment__item-wrap .btn.btn_del {
-            width: 50px;
-        }
-    </style>
-    <script src="/dom/create_elememt.js"></script>
+    #container .comment__list .comment__item-wrap{
+      display:flex;
+    }
+    #container .comment__list .comment__item-wrap .comment__item{
+      width: 200px;
+    }
+    #container .comment__list .comment__item-wrap .btn.btn_del{
+      width:50px;
+    }
+  </style>
+  <script src="/dom/create_elememt.js"></script>
 </head>
 
 <body>
@@ -95,7 +82,7 @@
                 console.log($div);
 
                 //2) ul 요소의 자식요소로 추가
-                const $comments = document.querySelector('.comment__list>.comments');
+                const $comments =document.querySelector('.comment__list>.comments');
                 $comments.appendChild($div);
 
                 //3) textarea.value 초기화
@@ -105,15 +92,25 @@
                 //4-1)삭제버튼
                 $div.querySelector('.btn.btn__del').addEventListener('click', e => {
                     console.log('삭제');
-                    const $child = e.target.closest('.comment__item-wrap');
-                    $comments.removeChild($child);
+                    const $child=e.target.closest('.comment__item-wrap');
+                    $comments.removeChild($child);      
 
                 });
                 //4-2)수정버튼
                 $div.querySelector('.btn.btn__modify').addEventListener('click', e => {
-                    console.log('수정');
-                    const $child = e.target.closest('.comment__item-wrap');
+                    console.log('수정');     
+                    // const $child=e.target.closest('.comment__item-wrap');
+                    // $comments.removeChild($child);      
+                    // const $child=e.target.closest('.comment__item-wrap');
 
+                  const $change=makeElements('div',{class:'comment_item--modify'},
+                    makeElements('input',{type:'text'}),
+                    makeElements('button',{class:'btn btn__check'},'확인'),
+                    makeElements('button',{class:'btn btn__cancel'},'취소')
+                    )
+                   $div.appendChild($change);
+
+                  //  $comments.remove(document.querySelector('.btn__modify'));
 
                 });
 

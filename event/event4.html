@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습</title>
+    <style>
+        * {
+            outline: 1px solid rebeccapurple;
+        }
+        .active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item" data-selected-menu="m1">menu1</li>
+            <li class="menu__item" data-selected-menu="m2">menu2</li>
+            <li class="menu__item" data-selected-menu="m3">menu3</li>
+        </ul>
+        <div id="msg">메뉴를 선택했습니다.</div>
+    </div>
+
+    <script>
+        const click_ch_BgColor = e =>{
+            const {type, target,currentTarget}=e;
+            console.log(target.dataset.selecedMenu);
+
+            // const $menu=document.querySelector('.menu');
+            // console.log('여기 지나감');
+            // const choice=target.dataset.selecedMenu;          
+
+            // // $menu.children[0].classList.toggle('active',e.target.textContent=='menu1');
+            // // $menu.children[1].classList.toggle('active',e.target.textContent=='menu2');
+            // // $menu.children[2].classList.toggle('active',e.target.textContent=='menu3');
+            // $menu.children[0].classList.toggle('active',target.dataset.selectedMenu=='m1');
+            // $menu.children[1].classList.toggle('active',target.dataset.selectedMenu=='m2');
+            // $menu.children[2].classList.toggle('active',target.dataset.selectedMenu=='m3');
+
+            const $menu=document.querySelectorAll('.menu__item');
+            console.log('여기 지나감'); 
+
+            $menu[0].classList.toggle('active', choice=='m1');
+            $menu[1].classList.toggle('active', choice=='m2');
+            $menu[2].classList.toggle('active', choice=='m3');
+
+
+        }
+
+
+        const selectMenu_h=e=>{
+            const msg = `${e.target.textContent} 메뉴를 선택했습니다.`;
+
+            document.getElementById('msg').textContent = msg;
+            click_ch_BgColor(e);
+        }
+        document.querySelector('#container .menu').addEventListener('click', selectMenu_h);
+
+    </script>
+</body>
+
+</html>
