@@ -99,18 +99,10 @@
                 //4-2)수정버튼
                 $div.querySelector('.btn.btn__modify').addEventListener('click', e => {
                     console.log('수정');     
-                    // const $child=e.target.closest('.comment__item-wrap');
-                    // $comments.removeChild($child);      
-                    // const $child=e.target.closest('.comment__item-wrap');
-
-                  const $change=makeElements('div',{class:'comment_item--modify'},
-                    makeElements('input',{type:'text'}),
-                    makeElements('button',{class:'btn btn__check'},'확인'),
-                    makeElements('button',{class:'btn btn__cancel'},'취소')
-                    )
-                   $div.appendChild($change);
-
-                  //  $comments.remove(document.querySelector('.btn__modify'));
+                  let $that1=document.querySelector('.comment__item');
+                  
+                  $that1.innerHTML='<input type="text">';
+                  
 
                 });
 

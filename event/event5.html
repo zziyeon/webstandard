@@ -42,11 +42,12 @@
         const all_h=e=>{
             console.log('클릭됨');
             for(let i=0;i<100;i++){
-                if(e.target.checked){
-                document.querySelectorAll('input')[1].setAttribute('checked');
+                if(!e.target.checked){
+                document.querySelectorAll('input')[1].removeAttribute('checked');
                 document.querySelectorAll('input')[2].removeAttribute('checked');
                 document.querySelectorAll('input')[3].removeAttribute('checked');
-                }else{               
+                }
+                else{               
                 document.querySelectorAll('input')[1].setAttribute('checked',true);
                 document.querySelectorAll('input')[2].setAttribute('checked',true);
                 document.querySelectorAll('input')[3].setAttribute('checked',true);

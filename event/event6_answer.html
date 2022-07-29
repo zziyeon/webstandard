@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트6</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        fieldset {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <fieldset>
+            <legend>취미</legend>
+            <div class="select--all">
+                <input type="checkbox" name="" id="allChk"><span>전체선택</span>
+            </div>
+            <ul class="hobby">
+                <li class="hobby__item">
+                    <input type="checkbox" name="hobby" id="" value="취미1"><span>취미1</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="hobby" id="" value="취미2"><span>취미2</span>
+                </li>
+                <li class="hobby__item">
+                    <input type="checkbox" name="hobby" id="" value="취미3"><span>취미3</span>
+                </li>
+            </ul>
+        </fieldset>
+        <div id="msg">==메시지 ==</div>
+        <div class="btngrp">
+            <button class="btn btn__del">삭제</button>
+        </div>
+    </div>
+
+    <script>
+        const $hobbies = document.querySelectorAll('.hobby__item input[type=checkbox]');
+        const $msg = document.getElementById('msg');
+        //이벤트 핸들러
+        //1) 전테 선택
+        const allChkClick_h = e => {
+            $hobbies.forEach(function ($hobby) {
+                $hobby.checked = e.target.checked ? true : false;
+            });
+        }
+
+        //2) 삭제 버튼
+        const clickDelBtn_h = e => {
+            const $filteredArr = [...$hobbies].filter($hobby=>$hobby.checked);
+            if(!$filteredArr.length){      //체크된 요소가 없으면
+                window.alert('대상을 선택해주세요.');
+                $msg.textContent='';
+                return;
+            }
+            let str='';
+            $filteredArr.forEach($hobby=>{      //체크된 요소가 있으면
+                str+=`${$hobby.value},`;
+            })                    
+            str=str.substring(0,str.length-1);
+            str=`${str}를 삭제하였습니다.`;
+            $msg.textContent=str;         
+        }
+        
+
+        //이벤트 등록
+        //1) 전체 선택 버튼
+        document.getElementById('allChk').addEventListener('click', allChkClick_h);
+
+        //2) 삭제 버튼
+        document.querySelector('.btn.btn__del').addEventListener('click', clickDelBtn_h);
+
+    </script>
+
+
+
+</body>
+
+</html>
