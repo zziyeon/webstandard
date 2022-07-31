@@ -29,10 +29,6 @@
             width: 80px;
         }
 
-        #container .wrap .comment {
-            /* flex:1; */
-        }
-
         #container .wrap .btn {
             width: 60px;
             margin-left: 5px;
@@ -89,8 +85,8 @@
                 //1) li요소 생성
                 const $div = makeElements('div', { class: 'comment__item-wrap' },
                     makeElements('li', { class: 'comment__item' }, comment),
-                    makeElements('button', { class: 'btn btn__del' }, '삭제'),
-                    makeElements('button', { class: 'btn btn__modify' }, '수정')
+                    makeElements('button', { class: 'btn btn__modify' }, '수정'),
+                    makeElements('button', { class: 'btn btn__del' }, '삭제')
                 );
 
                 //2) ul 요소의 자식요소로 추가
@@ -122,14 +118,18 @@
                         e.target.closest('.comment_item--modify').previousElementSibling.previousElementSibling.previousElementSibling.textContent = e.target.previousElementSibling.value;
                                                 
                         $div.removeChild($change);
+                        //수정버튼 이벤트 추가
                         $div.querySelector('.btn.btn__modify').addEventListener('click',arguments.callee);
                     });
-
+                    
                     //수정_취소 버튼
                     $change.querySelector('.btn.btn__cancel').addEventListener('click', e=>{
                         $div.removeChild($change);
+                        //수정버튼 이벤트 추가
                         $div.querySelector('.btn.btn__modify').addEventListener('click',arguments.callee);
                     });                
+
+                    //수정버튼 이벤트 제거
                     $div.querySelector('.btn.btn__modify').removeEventListener('click',arguments.callee);
                 });
 
