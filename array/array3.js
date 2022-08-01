@@ -32,7 +32,7 @@ const data = {
 }
 
 //3. 남자회원의 나이 총합 출력하기
-{
+{       //foreach 사용 (변수 하나 추가로 사용해야함.)
     if (data.result == 'success') {
         let age = 0;
         data.data.forEach(ele => {if (ele.gender == '남') age+=parseInt(ele.age);});
@@ -70,5 +70,46 @@ const data = {
         data.data.forEach(ele => {
             if (ele.name == '이름3') {console.log('이름3인 회원의 혈액형: '+ele.blood);}
         });
+    }
+}
+
+//7. 혈액형별 인원수 카운트
+// 결과: {A: 2, B:1, O:1, AB:1}
+{
+    if (data.result == 'success') {
+        const result= data.data.reduce((acc,ele)=> {
+            // //같은 혈액형 프로퍼티 누적
+
+
+            
+        },{});
+        console.log(`혈액형별 인원수: ${result}`);
+    }
+}
+
+//8. 남성 회원의 평균 연령
+{
+    if (data.result == 'success') {
+        let count=0;
+        const avgOfAge= data.data.reduce((acc,ele,idx,arr)=>{
+            if(ele.gender=='남') {
+                count ++;
+                return acc+parseInt(ele.age);
+            }
+            return acc+0;
+         },0);
+        console.log(`남자회원의 평균연령: ${avgOfAge/count}`);
+    }
+}
+// //9. 나이가 가장 많은 회원의 혈액형은?
+{
+    if (data.result == 'success') {
+        let bloodTypeOfTheOldest=data.data.reduce((acc,ele)=>{
+            if(ele.age==acc>ele.age?acc:ele.age){
+
+                return ele.blood; 
+            }
+        },0);
+        console.log(`나이가 가장 많은 회원의 혈액형: ${bloodTypeOfTheOldest}`);
     }
 }

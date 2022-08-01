@@ -112,6 +112,9 @@
                     makeElements('button', { class: 'btn btn__cancel' }, '취소')
                     )
                     $div.appendChild($change);
+
+                    //수정버튼 이벤트 제거
+                    $div.querySelector('.btn.btn__modify').removeEventListener('click',arguments.callee);
                     
                     //수정_확인 버튼
                     $change.querySelector('.btn.btn__check').addEventListener('click', e => {
@@ -128,9 +131,6 @@
                         //수정버튼 이벤트 추가
                         $div.querySelector('.btn.btn__modify').addEventListener('click',arguments.callee);
                     });                
-
-                    //수정버튼 이벤트 제거
-                    $div.querySelector('.btn.btn__modify').removeEventListener('click',arguments.callee);
                 });
 
             } else {
