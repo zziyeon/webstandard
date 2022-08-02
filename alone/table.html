@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div class="btngrp">
+            <button class="btn btn__send">데이터 수신</button>
+        </div>
+        <table>
+            <thead>
+                <th>이름</th>
+                <th>성별</th>
+                <th>나이</th>
+                <th>혈액형</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        const send_h = e=>{
+            const data= {
+                result: 'success',        //success: 데이터 전송 성공, fail: 데이터 전송 실패
+                data: [
+                    { name: '이름1', gender: '남', age: 10, blood: 'A' },
+                    { name: '이름2', gender: '여', age: 20, blood: 'B' },
+                    { name: '이름3', gender: '남', age: 30, blood: 'O' },
+                    { name: '이름4', gender: '여', age: 40, blood: 'AB' },
+                    { name: '이름5', gender: '남', age: 50, blood: 'A' }
+                ]
+            };
+        }
+
+        const trTag=({name, gender, age, blood})=>{
+            const str=`<tr>
+                                <td>${name}</td>,
+                                <td>${gender}</td>,
+                                <td>${age}</td>,
+                                <td>${blood}</td>
+                            </tr>`;
+            return str;
+        }
+
+        const result = data.data.map((ele)=>{
+            return trTag(ele);
+        });
+        document.querySelector('table tbody').innerHTML=result.join('');
+        
+        document.querySelector('.btn.btn__send').addEventListener('click',send_h);
+    </script>
+</body>
+</html>

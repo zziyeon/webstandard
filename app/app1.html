@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App1</title>
+    <!-- <script src="/dom/create_elememt.js"></script> -->
+    <style>
+        /* * { outline: 1px solid red;} */
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="btngrp">
+            <button class="btn btn__send">데이터수신</button>
+        </div>
+        <div class="criteria">
+            <fieldset class="criteria__gender">
+                <legend>성별</legend>
+                <input type="radio" name="gender" id="남"><label for="남">남</label>
+                <input type="radio" name="gender" id="여"><label for="여">여</label>
+            </fieldset>
+            <!-- <fieldset>
+                <legend>나이순 정렬</legend>
+                <label for="">오름차순</label><input type="radio" name="낷" id="">
+                <label for="">내림차순</label><input type="radio" name="낷" id="">
+            </fieldset> -->
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>성별</th>
+                    <th>나이</th>
+                    <th>혈액형</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>이름1</td>
+                    <td>남</td>
+                    <td>10</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>이름2</td>
+                    <td>여</td>
+                    <td>20</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>이름3</td>
+                    <td>남</td>
+                    <td>30</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>이름4</td>
+                    <td>여</td>
+                    <td>40</td>
+                    <td>AB</td>
+                </tr>
+                <tr>
+                    <td>이름5</td>
+                    <td>남</td>
+                    <td>50</td>
+                    <td>O</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        // //버튼 클릭
+        const data = {
+            result: 'success',        //success: 데이터 전송 성공, fail: 데이터 전송 실패
+            data: [
+                { name: '이름1', gender: '남', age: 10, blood: 'A' },
+                { name: '이름2', gender: '여', age: 20, blood: 'B' },
+                { name: '이름3', gender: '남', age: 30, blood: 'O' },
+                { name: '이름4', gender: '여', age: 40, blood: 'AB' },
+                { name: '이름5', gender: '남', age: 50, blood: 'A' }
+            ]
+        };
+
+        /*
+        const trTag = ({ name, gender, age, blood }) => {
+            const str = `<tr>
+                            <td>${name}</td>
+                            <td>${gender}</td>
+                            <td>${age}</td>
+                            <td>${blood}</td>
+                        </tr>`;
+            return str;
+        }
+
+        const result = data.data.map((ele) => {
+            return trTag(ele);
+        });
+        document.querySelector('table tbody').innerHTML = result.join('');
+        */
+
+        // 위 (주석)소스 줄이기 
+        //객체 1개를 tr태그로 렌더링
+        const trTag = ({ name, gender, age, blood }) => {
+            return `<tr> <td>${name}</td> <td>${gender}</td> <td>${age}</td> <td>${blood}</td> </tr>`;
+        };
+
+        //데이터 수신 시작
+        const send_h = e => {
+            //데이터 추출
+            const result = data.data.map(ele => trTag(ele));
+            document.querySelector('table tbody').innerHTML = result.join('');
+        }
+        document.querySelector('.btn.btn__send').addEventListener('click', send_h);
+        //데이터 수신 종료
+
+        const $criteriaGender = document.querySelectorAll('.criteria__gender');
+        const selectGender_h = ({ target, currentTarget }) => {
+            // if(!(e.target.tagName=='INPUT' || e.target.tagName=='LABEL')) return ;   //click일때 거르기 위해 사용
+            console.log('성별' + target.id);
+            console.log('성별' + currentTarget);
+
+            const result = data.data.filter(ele => ele.gender == target.id).map(ele => trTag(ele));
+            document.querySelector('table tbody').innerHTML = result.join('');
+        }
+
+        $criteriaGender.addEventListener('change',criteriaGender_h);       //change면 외부를 클릭해도 괜찮음. click이면 한번 걸러줘야함
+
+    </script>
+</body>
+
+</html>

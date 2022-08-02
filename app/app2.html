@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App2</title>
+
+    <!-- app1.html을 소스 보기 편하게 단축? 리팩토링함 -->
+    
+    <style>
+        /* * { outline: 1px solid red;} */
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="btngrp">
+            <button class="btn btn__send">데이터수신</button>
+        </div>
+        <div class="criteria">
+            <fieldset class="criteria__gender">
+                <legend>성별</legend>
+                <input type="radio" name="gender" id="남"><label for="남">남</label>
+                <input type="radio" name="gender" id="여"><label for="여">여</label>
+            </fieldset>
+            <fieldset class="criteria__sort">
+                <legend>나이순 정렬</legend>
+                <input type="radio" name="sort" id="asc"><label for="asc">오름차순</label>
+                <input type="radio" name="sort" id="desc"><label for="desc">내림차순</label>
+            </fieldset>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>성별</th>
+                    <th>나이</th>
+                    <th>혈액형</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>이름1</td>
+                    <td>남</td>
+                    <td>10</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>이름2</td>
+                    <td>여</td>
+                    <td>20</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>이름3</td>
+                    <td>남</td>
+                    <td>30</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>이름4</td>
+                    <td>여</td>
+                    <td>40</td>
+                    <td>AB</td>
+                </tr>
+                <tr>
+                    <td>이름5</td>
+                    <td>남</td>
+                    <td>50</td>
+                    <td>O</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        // //버튼 클릭
+
+        const data = {
+            result: 'success',        //success: 데이터 전송 성공, fail: 데이터 전송 실패
+            data: [
+                { name: '이름1', gender: '남', age: 10, blood: 'A' },
+                { name: '이름2', gender: '여', age: 20, blood: 'B' },
+                { name: '이름3', gender: '남', age: 30, blood: 'O' },
+                { name: '이름4', gender: '여', age: 40, blood: 'AB' },
+                { name: '이름5', gender: '남', age: 50, blood: 'A' }
+            ]
+        };
+
+        //객체 1개를 tr태그로 렌더링
+        const trTag = ({ name, gender, age, blood }) => {
+            return `<tr> 
+                            <td>${name}</td>
+                            <td>${gender}</td>
+                            <td>${age}</td>
+                            <td>${blood}</td>
+                            </tr>`;
+        };
+
+        //이벤트 타겟
+        const $btnSend = document.querySelector('.btn.btn__send');
+        const $criteriaGender = document.querySelector('.criteria__gender');
+        const $criteriaSort = document.querySelector('.criteria__sort');
+        const $tbody = document.querySelector('table tbody');
+        const $btnGenders = document.querySelectorAll('.criteria__gender input[type=radio]');
+        const $btnSorts = document.querySelectorAll('.criteria__sort input[type=radio]');
+
+        //이벤트 핸들러
+        //1) 데이터 수신 클릭시
+        $btnSend.addEventListener('click', e=>{
+            $tbody.innerHTML = data.data.map(ele => trTag(ele)).join('');            
+            [...$btnGenders, ...$btnSorts].filter(ele=>ele.checked==true).forEach(ele=>ele.checked=false);
+        });
+
+        //2) 성별 클릭시
+        $criteriaGender.addEventListener('change', ({ target, currentTarget })=> {
+            $tbody.innerHTML = data.data.filter(ele => ele.gender == target.id).map(ele => trTag(ele)).join('');
+        });
+
+        //3) 정렬 클릭시
+        $criteriaSort.addEventListener('change',({target})=>{
+            //undefined,input
+            const statusOfGender=[...$btnGenders].find(ele=>ele.checked==true);
+
+            let sortFunc='';
+            switch(target.id){
+                case "asc":
+                    sortFunc=(pre,next) =>pre.age-next.age;
+                    break;
+                case "desc":
+                    sortFunc=(pre,next) =>next.age-pre.age;
+                    break;
+            }
+            if(!statusOfGender){
+                $tbody.innerHTML=data.data.sort(sortFunc).map(ele=>trTag(ele)).join('');
+            }else{
+                $tbody.innerHTML=data.data.filter(ele=>ele.gender==statusOfGender.id).sort(sortFunc).map(ele=>trTag(ele)).join('');
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
+
