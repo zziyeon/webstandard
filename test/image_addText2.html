@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 위에 글자 추가</title>
+    <style>
+        /* * {outline: 1px solid olivedrab;} */
+        body {margin: 0; padding: 0; background-color: rgba(210, 187, 236, 0.322);}
+        ul,li, p {margin: 0; padding: 0; list-style: none;}
+
+        #container {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        #container .product{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container .product .product__item {
+            flex-basis: 200px;
+            flex-shrink: 0;      /* 이미지가 줄어들때 비율 0이면 item 폭 줄임 방지*/
+            margin: 0 5px;
+            position: relative;
+            transition: all .4s;
+            opacity: 0.7;    /* 투명도 0~1 */
+        }
+        #container .product .product__item:hover {
+            flex-basis: 250px;
+            opacity: 1;    /* 투명도 0~1 */
+            margin: 0 20px;
+        }
+        
+        #container .product .product__item:hover .profile.profile--green{
+            color: rgb(39, 83, 46);
+        }
+        
+        #container .product .product__item:hover .profile.profile--pink{
+            color: rgb(153, 70, 84);
+        }
+        
+        #container .product .product__item:hover .profile.profile--purple{
+            color: rgb(104, 37, 131);
+        }
+        #container .product .product__item:hover .profile.profile--lemon{
+            color: rgb(182, 180, 51);
+        }
+        
+        #container .product .product__item .profile {
+            position: relative;
+            color: rgb(218, 218, 218);
+        }
+        #container .product .product__item .profile::before {
+            content: '';
+            display: block;
+            /* background-color: rgba(250, 235, 215, 0.329); */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(65, 65, 65, 0.719), rgb(0, 0, 0));
+            position: absolute;
+            left: 0;right: 0;
+            bottom: 0;
+            height: 100px;;
+        }
+
+        /*
+        #container .product .product__item .profile::after {
+            content: 'after';
+        } */
+
+        #container .product .product__item .profile img{
+            width: 100%;
+        }
+
+
+        #container .product .product__item .profile .profile__contents {
+            position: absolute;
+            bottom: 0; left: 0;
+            max-height: 50px;
+            overflow: hidden;
+            padding: 0 10px;
+            transition: all 0.4s;
+            /* color: white; */
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        #container .product .product__item:hover .profile .profile__contents {
+            max-height: 150px;
+            overflow: hidden;
+            background-color: rgba(240, 255, 255, 0.514);
+            padding: 10px
+        }
+
+        #container .product .product__item .profile .profile__contents h3 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+        
+        #container .product .product__item .profile .profile__contents h3 span {
+            display: block; 
+            font-size: 0.9em;
+        }
+        #container .product .product__item .profile .profile__contents h3 span::before {
+            /* content: '원'; */
+            content: attr(title);
+            padding-right: 5px;
+        }
+        #container .product .product__item .profile .profile__contents h3 span::after {
+            /* content: '원'; */
+            content: attr(data-title);
+        }
+        #container .product .product__item .profile .profile__contents p {
+            font-size: 12px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="product">
+            <li class="product__item">
+                <div class="profile profile--green">
+                    <img src="https://cdn.pixabay.com/photo/2019/01/03/22/40/popcorn-3912112__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h3>팝콘 <span title="가격"  data-title="원">5,000</span></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error minima commodi animi quam dolore. Ratione eius natus nisi modi assumenda veritatis facere dicta voluptates odio optio.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product__item">
+                <div class="profile profile--pink">
+                    <img src="https://cdn.pixabay.com/photo/2019/08/13/21/00/bread-4404243__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h3>빵 <span title="가격" data-title="원">4,500</span></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error minima commodi animi quam dolore. Ratione eius natus nisi modi assumenda veritatis facere dicta voluptates odio optio.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product__item">
+                <div class="profile profile--purple">
+                    <img src="https://cdn.pixabay.com/photo/2017/09/26/20/10/ice-2789928__340.jpg" alt="">
+                    <div class="profile__contents">
+                        <h3>아이스크림 <span title="가격" data-title="원">2,000</span></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error minima commodi animi quam dolore. Ratione eius natus nisi modi assumenda veritatis facere dicta voluptates odio optio.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product__item">
+                <div class="profile profile--lemon">
+                    <img src="https://cdn.pixabay.com/photo/2016/07/26/16/16/water-1543166_960_720.jpg" alt="">
+                    <div class="profile__contents">
+                        <h3>레몬 주스 <span title="가격" data-title="원">2,500</span></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error minima commodi animi quam dolore. Ratione eius natus nisi modi assumenda veritatis facere dicta voluptates odio optio.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
