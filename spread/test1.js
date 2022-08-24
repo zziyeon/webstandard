@@ -32,6 +32,17 @@
     console.log( {...obj1, blood:'A'});
 
     //객체 병합(교체 및 추가)
-    console.log({...obj1, ...obj2})
-    console.log({...obj1, ...obj3})
+    //교체
+    console.log({...obj1, ...obj2});
+    //추가
+    console.log({...obj1, ...obj3});
+
+    //삭제
+    delete obj1.name;
+    console.log(obj1);
+
+    obj1.name='홍길동';
+    console.log(obj1);
+
+
 }
